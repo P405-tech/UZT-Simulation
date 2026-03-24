@@ -63,7 +63,7 @@
 
         /* RIGHT MENU (Absolute positioning prevents mobile flexbox stretching) */
         #topMenuHorizontal {
-            position: absolute; right: 55px; /* Anchored left of the square button */
+            position: absolute; right: 55px; 
             display: flex; flex-direction: row; align-items: center; gap: 5px;
             background: var(--bg-glass); backdrop-filter: blur(16px) saturate(150%);
             border: 1px solid var(--border-glass); border-radius: 15px; padding: 5px 10px;
@@ -213,8 +213,9 @@
             .calc-btn { min-height: 48px; font-size: 1rem; border-radius: 12px; }
             #calcScreen, #calcScreenPharma { font-size: 1.8rem; padding: 15px 10px; margin-bottom: 10px; }
             
-            .pharma-list-grid { gap: 8px; }
-            .pharma-btn { padding: 12px 6px; font-size: 0.85rem; border-radius: 12px; }
+            /* Clean single column on mobile to prevent clipping */
+            .pharma-list-grid { grid-template-columns: 1fr; gap: 8px; }
+            .pharma-btn { padding: 12px 10px; font-size: 0.9rem; border-radius: 12px; }
         }
     </style>
 </head>
@@ -326,20 +327,20 @@
     </div>
     
     <div id="pharmaListContainer">
-        [span_0](start_span)[span_1](start_span)<p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:10px;">Select a Pharmacokinetic parameter[span_0](end_span)[span_1](end_span):</p>
+        <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:10px;">Select a Pharmacokinetic parameter:</p>
         <div class="pharma-list-grid">
-            [span_2](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('ke')">Elimination Rate<span class="sub">ke = CL / Vd[span_2](end_span)</span></div>
-            [span_3](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('half_life')">Half-Life<span class="sub">t½ = 0.693 / ke[span_3](end_span)</span></div>
-            [span_4](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('cl')">Clearance<span class="sub">CL = (Dose*F) / AUC[span_4](end_span)</span></div>
-            [span_5](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('vd')">Vol of Distribution<span class="sub">Vd = Dose / C0[span_5](end_span)</span></div>
-            [span_6](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('c0')">Initial Conc.<span class="sub">C0 = Dose / Vd[span_6](end_span)</span></div>
-            [span_7](start_span)[span_8](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('tmax_oral')">Oral Tmax<span class="sub">ln(ka/ke) / (ka-ke)[span_7](end_span)[span_8](end_span)</span></div>
-            [span_9](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('css_avg')">Steady State Avg<span class="sub">Css = (F*D) / (CL*τ)[span_9](end_span)</span></div>
-            [span_10](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('cl_hep')">Hepatic CL<span class="sub">Qh * Clint * fub...[span_10](end_span)</span></div>
-            [span_11](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('crcl_male')">CrCL (Male)<span class="sub">Cockcroft-Gault[span_11](end_span)</span></div>
-            [span_12](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('crcl_female')">CrCL (Female)<span class="sub">Cockcroft-Gault[span_12](end_span)</span></div>
-            [span_13](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('ibw_male')">IBW (Male)<span class="sub">50 + 2.3(in > 5ft)[span_13](end_span)</span></div>
-            [span_14](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('ibw_female')">IBW (Female)<span class="sub">45.5 + 2.3(in > 5ft)[span_14](end_span)</span></div>
+            <div class="pharma-btn" onclick="openPharmaParamUI('ke')">Elimination Rate<span class="sub">ke = CL / Vd</span></div>
+            <div class="pharma-btn" onclick="openPharmaParamUI('half_life')">Half-Life<span class="sub">t½ = 0.693 / ke</span></div>
+            <div class="pharma-btn" onclick="openPharmaParamUI('cl')">Clearance<span class="sub">CL = (Dose*F) / AUC</span></div>
+            <div class="pharma-btn" onclick="openPharmaParamUI('vd')">Vol of Distribution<span class="sub">Vd = Dose / C0</span></div>
+            <div class="pharma-btn" onclick="openPharmaParamUI('c0')">Initial Conc.<span class="sub">C0 = Dose / Vd</span></div>
+            <div class="pharma-btn" onclick="openPharmaParamUI('tmax_oral')">Oral Tmax<span class="sub">ln(ka/ke) / (ka-ke)</span></div>
+            <div class="pharma-btn" onclick="openPharmaParamUI('css_avg')">Steady State Avg<span class="sub">Css = (F*D) / (CL*τ)</span></div>
+            <div class="pharma-btn" onclick="openPharmaParamUI('cl_hep')">Hepatic CL<span class="sub">Qh * Clint * fub...</span></div>
+            <div class="pharma-btn" onclick="openPharmaParamUI('crcl_male')">CrCL (Male)<span class="sub">Cockcroft-Gault</span></div>
+            <div class="pharma-btn" onclick="openPharmaParamUI('crcl_female')">CrCL (Female)<span class="sub">Cockcroft-Gault</span></div>
+            <div class="pharma-btn" onclick="openPharmaParamUI('ibw_male')">IBW (Male)<span class="sub">50 + 2.3(in > 5ft)</span></div>
+            <div class="pharma-btn" onclick="openPharmaParamUI('ibw_female')">IBW (Female)<span class="sub">45.5 + 2.3(in > 5ft)</span></div>
         </div>
     </div>
 
@@ -416,10 +417,12 @@
     const landingSection = document.getElementById('landingSection');
     const modals = document.querySelectorAll('.glass-modal');
 
+    // Right Main Menu Toggle
     document.getElementById('mainMenuBtn').addEventListener('click', () => {
         topMenuHorizontal.classList.toggle('active');
     });
 
+    // Inner Pharma Menu Toggle
     document.getElementById('pharmaMenuBtnInside').addEventListener('click', () => {
         topMenuPharmaInside.classList.toggle('active');
     });
@@ -445,12 +448,13 @@
 
     window.closeModals = function() { 
         modals.forEach(modal => { modal.style.display = 'none'; }); 
+        // Reset Pharma Modal to list view on close
         document.getElementById('pharmaListContainer').style.display = 'block';
         document.getElementById('pharmaParamUI').style.display = 'none';
         if(topMenuPharmaInside) topMenuPharmaInside.classList.remove('active');
     };
 
-    // --- GLOBAL MATH SECURE ENGINE (WITH TRIG FIX) ---
+    // --- GLOBAL MATH SECURE ENGINE ---
     window._isDegMain = true;
     
     window._sin = (x, deg) => deg ? Math.sin(x * Math.PI / 180) : Math.sin(x);
