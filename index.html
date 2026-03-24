@@ -36,7 +36,7 @@
         .txt-packet { font-size: 1.5rem; font-weight: 800; color: var(--accent-warp); letter-spacing: 3px; text-shadow: 0 0 15px #000; display: none; }
         @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 
-        /* --- TOP HEADER & MENUS --- */
+        /* --- TOP HEADER & MENUS (Mobile Fixed) --- */
         #topNav {
             position: fixed; top: 0; left: 0; right: 0; height: 70px;
             display: flex; justify-content: space-between; align-items: center;
@@ -44,14 +44,16 @@
         }
         #topNav h2 { 
             color: white; margin: 0; text-shadow: 0 2px 5px rgba(0,0,0,0.8); pointer-events: auto; 
-            position: absolute; left: 50%; transform: translateX(-50%);
+            position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap;
         }
         
-        .menu-wrapper-right { display: flex; align-items: center; gap: 10px; pointer-events: auto; margin-left: auto; }
+        .menu-wrapper-right { 
+            position: relative; display: flex; align-items: center; pointer-events: auto; margin-left: auto; 
+        }
 
         /* SQUARE LIQUID GLASS BUTTONS */
         .menu-square-btn {
-            width: 46px; height: 46px; border-radius: 12px;
+            width: 46px; height: 46px; border-radius: 12px; z-index: 105;
             background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px) saturate(150%); -webkit-backdrop-filter: blur(12px) saturate(150%);
             border: 1px solid rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.6); border-left: 1px solid rgba(255, 255, 255, 0.6);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); display: flex; justify-content: center; align-items: center;
@@ -59,14 +61,16 @@
         }
         .menu-square-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
 
-        /* RIGHT MENU (General) */
+        /* RIGHT MENU (Absolute positioning prevents mobile flexbox stretching) */
         #topMenuHorizontal {
+            position: absolute; right: 55px; /* Anchored left of the square button */
             display: flex; flex-direction: row; align-items: center; gap: 5px;
             background: var(--bg-glass); backdrop-filter: blur(16px) saturate(150%);
-            border: 1px solid var(--border-glass); border-radius: 15px; padding: 5px 15px;
+            border: 1px solid var(--border-glass); border-radius: 15px; padding: 5px 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transform-origin: right center; transform: scaleX(0); opacity: 0;
             pointer-events: none; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+            white-space: nowrap;
         }
         #topMenuHorizontal.active { transform: scaleX(1); opacity: 1; pointer-events: auto; }
 
@@ -93,7 +97,7 @@
         .close-modal:hover { color: var(--accent); }
 
         /* UZT Toggle Switch */
-        .uzt-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .uzt-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; position: relative; }
         .uzt-toggle-container { display: flex; align-items: center; background: rgba(0,0,0,0.4); padding: 8px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
         .uzt-toggle-text { font-size: 0.8rem; font-weight: bold; color: var(--text-main); margin-right: 10px; }
         .switch { position: relative; display: inline-block; width: 36px; height: 20px; }
@@ -105,7 +109,7 @@
         input:checked + .slider.orange { background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }
 
         /* --- CALCULATOR GRID UI (Main Math) --- */
-        #calcScreen { 
+        #calcScreen, #calcScreenPharma { 
             width: 100%; font-family: 'Courier New', monospace; font-size: 2.2rem; text-align: right; 
             background: rgba(0,0,0,0.3); color: white; letter-spacing: 2px; 
             border: 1px solid rgba(255,255,255,0.1); border-top: 1px solid rgba(0,0,0,0.5); border-left: 1px solid rgba(0,0,0,0.5);
@@ -128,6 +132,7 @@
         .calc-btn:active { transform: translateY(2px); box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
         
         .bento-span-2 { grid-column: span 2; }
+        .bento-span-5 { grid-column: span 5; }
         
         .calc-btn.op { color: var(--accent-warp); font-size: 0.95rem; background: rgba(0, 229, 255, 0.05); }
         .calc-btn.action { font-weight: bold; background: rgba(255,255,255,0.05); }
@@ -156,6 +161,19 @@
         .pharma-input-box:focus { border-color: var(--accent-warp); box-shadow: 0 0 10px rgba(0, 229, 255, 0.3); }
         #pharmaParamResult { margin-top: 20px; font-size: 2rem; font-family: monospace; text-align: center; color: white; text-shadow: 0 0 10px rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; }
 
+        /* Embedded Pharma Menu (Absolute positioning to prevent layout stretching) */
+        #topMenuPharmaInside {
+            position: absolute; top: 0; left: 55px; z-index: 100;
+            display: flex; flex-direction: row; align-items: center; gap: 2px;
+            background: rgba(0, 30, 40, 0.95); backdrop-filter: blur(20px);
+            border: 1px solid var(--accent-warp); border-radius: 12px; padding: 5px 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            transform-origin: left center; transform: scaleX(0); opacity: 0;
+            pointer-events: none; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+            white-space: nowrap;
+        }
+        #topMenuPharmaInside.active { transform: scaleX(1); opacity: 1; pointer-events: auto; }
+        
         /* Info Tab */
         .info-header { color: var(--accent); font-size: 0.95rem; font-weight: 800; letter-spacing: 1px; margin-bottom: 8px; margin-top: 15px; }
         .info-text { font-size: 0.9rem; line-height: 1.6; color: #ddd; margin-bottom: 12px; }
@@ -183,6 +201,21 @@
         .dot-container.active { color: #fff; }
         .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: 0.3s; }
         .dot-container.active .dot { background: var(--accent-warp); box-shadow: 0 0 8px var(--accent-warp); }
+
+        /* --- MOBILE RESPONSIVENESS OVERRIDES --- */
+        @media (max-width: 480px) {
+            #topMenuHorizontal { right: 50px; padding: 5px 8px; gap: 2px; }
+            .top-icon-btn { padding: 6px 8px; }
+            .top-icon-text { font-size: 0.65rem; }
+            
+            .glass-modal { padding: 20px 15px; width: 95%; max-height: 90vh; }
+            .calc-grid { gap: 6px; }
+            .calc-btn { min-height: 48px; font-size: 1rem; border-radius: 12px; }
+            #calcScreen, #calcScreenPharma { font-size: 1.8rem; padding: 15px 10px; margin-bottom: 10px; }
+            
+            .pharma-list-grid { gap: 8px; }
+            .pharma-btn { padding: 12px 6px; font-size: 0.85rem; border-radius: 12px; }
+        }
     </style>
 </head>
 <body>
@@ -271,7 +304,20 @@
 
 <div id="pharmaParamsModal" class="glass-modal">
     <div class="uzt-header">
-        <h3 style="margin:0; font-size:1.1rem; color:var(--accent-warp);">PHARMACOLOGY</h3>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div class="menu-square-btn" id="pharmaMenuBtnInside" title="Pharma Parameters" style="width: 38px; height: 38px; color:var(--accent-warp); border-color:var(--accent-warp);">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.5 20.5a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M7 13.5l3.5-3.5 3.5 3.5"/></svg>
+            </div>
+            <h3 style="margin:0; font-size:1.1rem; color:var(--accent-warp);">PHARMA</h3>
+        </div>
+        
+        <div id="topMenuPharmaInside">
+            <button class="top-icon-btn" onclick="openPharmaParamUI('cl')"><span class="top-icon-text">CL</span></button>
+            <button class="top-icon-btn" onclick="openPharmaParamUI('cmax')"><span class="top-icon-text">Cmax</span></button>
+            <button class="top-icon-btn" onclick="openPharmaParamUI('tmax_oral')"><span class="top-icon-text">Tmax</span></button>
+            <button class="top-icon-btn" onclick="openPharmaParamUI('half_life')"><span class="top-icon-text">t½</span></button>
+        </div>
+        
         <div class="uzt-toggle-container">
             <span class="uzt-toggle-text">UZT Mode</span>
             <label class="switch"><input type="checkbox" id="uztLogicTogglePharma" checked><span class="slider"></span></label>
@@ -280,20 +326,20 @@
     </div>
     
     <div id="pharmaListContainer">
-        <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:10px;">Select a Pharmacokinetic parameter to calculate:</p>
+        [span_0](start_span)[span_1](start_span)<p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:10px;">Select a Pharmacokinetic parameter[span_0](end_span)[span_1](end_span):</p>
         <div class="pharma-list-grid">
-            <div class="pharma-btn" onclick="openPharmaParamUI('ke')">Elimination Rate<span class="sub">ke = CL / Vd</span></div>
-            <div class="pharma-btn" onclick="openPharmaParamUI('half_life')">Half-Life<span class="sub">t½ = 0.693 / ke</span></div>
-            <div class="pharma-btn" onclick="openPharmaParamUI('cl')">Clearance<span class="sub">CL = (Dose*F) / AUC</span></div>
-            <div class="pharma-btn" onclick="openPharmaParamUI('vd')">Vol of Distribution<span class="sub">Vd = Dose / C0</span></div>
-            <div class="pharma-btn" onclick="openPharmaParamUI('c0')">Initial Conc.<span class="sub">C0 = Dose / Vd</span></div>
-            <div class="pharma-btn" onclick="openPharmaParamUI('tmax_oral')">Oral Tmax<span class="sub">ln(ka/ke) / (ka-ke)</span></div>
-            <div class="pharma-btn" onclick="openPharmaParamUI('css_avg')">Steady State Avg<span class="sub">Css = (F*D) / (CL*τ)</span></div>
-            <div class="pharma-btn" onclick="openPharmaParamUI('cl_hep')">Hepatic CL<span class="sub">Qh * Clint * fub...</span></div>
-            <div class="pharma-btn" onclick="openPharmaParamUI('crcl_male')">CrCL (Male)<span class="sub">Cockcroft-Gault</span></div>
-            <div class="pharma-btn" onclick="openPharmaParamUI('crcl_female')">CrCL (Female)<span class="sub">Cockcroft-Gault</span></div>
-            <div class="pharma-btn" onclick="openPharmaParamUI('ibw_male')">IBW (Male)<span class="sub">50 + 2.3(in > 5ft)</span></div>
-            <div class="pharma-btn" onclick="openPharmaParamUI('ibw_female')">IBW (Female)<span class="sub">45.5 + 2.3(in > 5ft)</span></div>
+            [span_2](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('ke')">Elimination Rate<span class="sub">ke = CL / Vd[span_2](end_span)</span></div>
+            [span_3](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('half_life')">Half-Life<span class="sub">t½ = 0.693 / ke[span_3](end_span)</span></div>
+            [span_4](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('cl')">Clearance<span class="sub">CL = (Dose*F) / AUC[span_4](end_span)</span></div>
+            [span_5](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('vd')">Vol of Distribution<span class="sub">Vd = Dose / C0[span_5](end_span)</span></div>
+            [span_6](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('c0')">Initial Conc.<span class="sub">C0 = Dose / Vd[span_6](end_span)</span></div>
+            [span_7](start_span)[span_8](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('tmax_oral')">Oral Tmax<span class="sub">ln(ka/ke) / (ka-ke)[span_7](end_span)[span_8](end_span)</span></div>
+            [span_9](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('css_avg')">Steady State Avg<span class="sub">Css = (F*D) / (CL*τ)[span_9](end_span)</span></div>
+            [span_10](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('cl_hep')">Hepatic CL<span class="sub">Qh * Clint * fub...[span_10](end_span)</span></div>
+            [span_11](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('crcl_male')">CrCL (Male)<span class="sub">Cockcroft-Gault[span_11](end_span)</span></div>
+            [span_12](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('crcl_female')">CrCL (Female)<span class="sub">Cockcroft-Gault[span_12](end_span)</span></div>
+            [span_13](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('ibw_male')">IBW (Male)<span class="sub">50 + 2.3(in > 5ft)[span_13](end_span)</span></div>
+            [span_14](start_span)<div class="pharma-btn" onclick="openPharmaParamUI('ibw_female')">IBW (Female)<span class="sub">45.5 + 2.3(in > 5ft)[span_14](end_span)</span></div>
         </div>
     </div>
 
@@ -364,13 +410,18 @@
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-    // --- HORIZONTAL MENU LOGIC ---
+    // --- MENUS & MODALS LOGIC ---
     const topMenuHorizontal = document.getElementById('topMenuHorizontal');
+    const topMenuPharmaInside = document.getElementById('topMenuPharmaInside');
     const landingSection = document.getElementById('landingSection');
     const modals = document.querySelectorAll('.glass-modal');
 
     document.getElementById('mainMenuBtn').addEventListener('click', () => {
         topMenuHorizontal.classList.toggle('active');
+    });
+
+    document.getElementById('pharmaMenuBtnInside').addEventListener('click', () => {
+        topMenuPharmaInside.classList.toggle('active');
     });
 
     window.showLanding = function() {
@@ -389,13 +440,14 @@
         window.closeModals(); 
         document.getElementById(modalId).style.display = 'block';
         topMenuHorizontal.classList.remove('active'); 
+        if(topMenuPharmaInside) topMenuPharmaInside.classList.remove('active');
     };
 
     window.closeModals = function() { 
         modals.forEach(modal => { modal.style.display = 'none'; }); 
-        // Reset Pharma Modal to list view on close
         document.getElementById('pharmaListContainer').style.display = 'block';
         document.getElementById('pharmaParamUI').style.display = 'none';
+        if(topMenuPharmaInside) topMenuPharmaInside.classList.remove('active');
     };
 
     // --- GLOBAL MATH SECURE ENGINE (WITH TRIG FIX) ---
@@ -447,7 +499,6 @@
         calcVal = finalVal.toString();
     };
 
-
     // --- PHARMACOLOGY PARAMETERS ENGINE ---
     const pharmaFormulas = {
         'ke': { title: 'Elimination Rate (ke)', inputs: [{id: 'cl', label: 'Clearance (CL, L/hr)'}, {id: 'vd', label: 'Volume of Distribution (Vd, L)'}] },
@@ -457,14 +508,16 @@
         'c0': { title: 'Initial Concentration (C0)', inputs: [{id: 'dose', label: 'Dose (mg)'}, {id: 'vd', label: 'Volume of Distribution (Vd, L)'}] },
         'tmax_oral': { title: 'Oral Time to Peak (Tmax)', inputs: [{id: 'ka', label: 'Absorption Rate (ka, hr⁻¹)'}, {id: 'ke', label: 'Elimination Rate (ke, hr⁻¹)'}] },
         'css_avg': { title: 'Steady State Average (Css)', inputs: [{id: 'f', label: 'Bioavailability (F)'}, {id: 'dose', label: 'Dose (mg)'}, {id: 'cl', label: 'Clearance (CL, L/hr)'}, {id: 'tau', label: 'Dosing Interval (τ, hrs)'}] },
-        'crcl_male': { title: 'CrCL - Male (Cockcroft-Gault)', inputs: [{id: 'age', label: 'Age (years)'}, {id: 'wt', label: 'Weight (kg)'}, {id: 'scr', label: 'Serum Creatinine (mg/dL)'}] },
-        'crcl_female': { title: 'CrCL - Female (Cockcroft-Gault)', inputs: [{id: 'age', label: 'Age (years)'}, {id: 'wt', label: 'Weight (kg)'}, {id: 'scr', label: 'Serum Creatinine (mg/dL)'}] },
+        'crcl_male': { title: 'CrCL - Male', inputs: [{id: 'age', label: 'Age (years)'}, {id: 'wt', label: 'Weight (kg)'}, {id: 'scr', label: 'Serum Creatinine (mg/dL)'}] },
+        'crcl_female': { title: 'CrCL - Female', inputs: [{id: 'age', label: 'Age (years)'}, {id: 'wt', label: 'Weight (kg)'}, {id: 'scr', label: 'Serum Creatinine (mg/dL)'}] },
         'ibw_male': { title: 'Ideal Body Weight (Male)', inputs: [{id: 'ht', label: 'Height (inches)'}] },
         'ibw_female': { title: 'Ideal Body Weight (Female)', inputs: [{id: 'ht', label: 'Height (inches)'}] },
-        'cl_hep': { title: 'Hepatic Clearance (Cl_H)', inputs: [{id: 'qh', label: 'Hepatic Blood Flow (Qh, L/hr)'}, {id: 'clint', label: 'Intrinsic CL (Cl_int, L/hr)'}, {id: 'fub', label: 'Fraction Unbound (fu_b)'}] }
+        'cl_hep': { title: 'Hepatic Clearance (Cl_H)', inputs: [{id: 'qh', label: 'Hepatic Blood Flow (Qh, L/hr)'}, {id: 'clint', label: 'Intrinsic CL (Cl_int, L/hr)'}, {id: 'fub', label: 'Fraction Unbound (fu_b)'}] },
+        'cmax': { title: 'Peak Concentration (Cmax)', inputs: [{id: 'c0', label: 'Initial Conc. (C0)'}, {id: 'ke', label: 'Elim. Rate (ke)'}, {id: 'tau', label: 'Dosing Interval (τ)'}] }
     };
 
     window.openPharmaParamUI = function(paramId) {
+        document.getElementById('topMenuPharmaInside').classList.remove('active'); // Close transient menu
         document.getElementById('pharmaListContainer').style.display = 'none';
         document.getElementById('pharmaParamUI').style.display = 'block';
         
@@ -515,6 +568,7 @@
             else if (paramId === 'ibw_male') result = values.ht > 60 ? 50 + 2.3 * (values.ht - 60) : 50;
             else if (paramId === 'ibw_female') result = values.ht > 60 ? 45.5 + 2.3 * (values.ht - 60) : 45.5;
             else if (paramId === 'cl_hep') result = (values.qh * values.clint * values.fub) / (values.qh + (values.clint * values.fub));
+            else if (paramId === 'cmax') result = values.c0 / (1 - Math.exp(-values.ke * values.tau));
 
             // THE UZT LOGIC CHECK
             if (result === Infinity || result === -Infinity || isNaN(result)) {
@@ -524,7 +578,6 @@
             }
         } catch(e) { document.getElementById('pharmaParamResult').innerText = "Error"; }
     };
-
 
     // --- 3D ENVIRONMENT & HUD INTERACTION (Untouched Core Logic) ---
     const navItems = document.querySelectorAll('.nav-item'); const glass = document.getElementById('glass-highlight');
