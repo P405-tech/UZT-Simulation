@@ -191,9 +191,9 @@
         .nav-text { font-family: monospace; font-size: 0.95rem; font-weight: bold; margin-left: 10px; max-width: 0; opacity: 0; transition: max-width 0.4s ease, opacity 0.3s ease; overflow: hidden; white-space: nowrap; }
         .nav-item.active .nav-text { max-width: 140px; opacity: 1; }
         #text-startstop { color: var(--accent); }
-        .knob { cursor: ns-resize; }
-        .knob-ring { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; border: 2px dashed rgba(255,255,255,0.0); transition: 0.3s; pointer-events: none; }
-        .nav-item.active.knob .knob-ring { border-color: rgba(255,255,255,0.8); }
+        .***** { cursor: ns-resize; }
+        .*****-ring { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; border: 2px dashed rgba(255,255,255,0.0); transition: 0.3s; pointer-events: none; }
+        .nav-item.active.***** .*****-ring { border-color: rgba(255,255,255,0.8); }
 
         .sub-bar { background: var(--bg-glass); backdrop-filter: blur(16px); border-radius: 20px; padding: 6px 25px; display: flex; gap: 40px; border: 1px solid var(--border-glass); }
         .dot-pair { display: flex; gap: 15px; }
@@ -258,15 +258,15 @@
     
     <input type="text" id="calcScreen" readonly value="0">
     <div class="calc-grid">
-        <button class="calc-btn op" onclick="calcInput('sin(')">sin</button>
-        <button class="calc-btn op" onclick="calcInput('cos(')">cos</button>
-        <button class="calc-btn op" onclick="calcInput('tan(')">tan</button>
+        <button class="calc-btn op" id="btnSin" onclick="calcInput('sin(')">sin</button>
+        <button class="calc-btn op" id="btnCos" onclick="calcInput('cos(')">cos</button>
+        <button class="calc-btn op" id="btnTan" onclick="calcInput('tan(')">tan</button>
         <button class="calc-btn op bento-span-2" onclick="toggleDegRad()">
             <span class="mode-text" id="lblRad">rad</span> | <span class="mode-text active-mode" id="lblDeg">deg</span>
         </button>
 
-        <button class="calc-btn op" onclick="calcInput('log(')">log</button>
-        <button class="calc-btn op" onclick="calcInput('ln(')">ln</button>
+        <button class="calc-btn op" id="btnLog" onclick="calcInput('log(')">log</button>
+        <button class="calc-btn op" id="btnLn" onclick="calcInput('ln(')">ln</button>
         <button class="calc-btn op" onclick="calcInput('(')">(</button>
         <button class="calc-btn op" onclick="calcInput(')')">)</button>
         <button class="calc-btn op" id="btnInv" onclick="toggleInv()">inv</button>
@@ -277,13 +277,13 @@
         <button class="calc-btn action" onclick="calcBackspace()">⌫</button>
         <button class="calc-btn op" onclick="calcInput('÷')">÷</button>
 
-        <button class="calc-btn op" onclick="calcInput('^')">^</button>
+        <button class="calc-btn op" id="btnSqrt" onclick="calcInput('√(')">√</button>
         <button class="calc-btn action" onclick="calcInput('7')">7</button>
         <button class="calc-btn action" onclick="calcInput('8')">8</button>
         <button class="calc-btn action" onclick="calcInput('9')">9</button>
         <button class="calc-btn op" onclick="calcInput('×')">×</button>
 
-        <button class="calc-btn op" onclick="calcInput('√(')">√</button>
+        <button class="calc-btn op" onclick="calcInput('^')">^</button>
         <button class="calc-btn action" onclick="calcInput('4')">4</button>
         <button class="calc-btn action" onclick="calcInput('5')">5</button>
         <button class="calc-btn action" onclick="calcInput('6')">6</button>
@@ -390,9 +390,9 @@
 <div class="bottom-ui">
     <div class="main-bar" id="main-bar">
         <div class="glass-highlight" id="glass-highlight"></div>
-        <div class="nav-item active knob" id="nav-dist" data-source="dist"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20"/><path d="M6 8v8"/><path d="M10 8v8"/><path d="M14 8v8"/><path d="M18 8v8"/></svg><span class="nav-text" id="val-dist">500 m</span><div class="knob-ring"></div></div>
-        <div class="nav-item knob" id="nav-time" data-source="time"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="nav-text" id="val-time">10.000 s</span><div class="knob-ring"></div></div>
-        <div class="nav-item knob" id="nav-speed" data-source="speed"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 14l4-4"/><path d="M3.34 16A10 10 0 1 1 20.66 16"/></svg><span class="nav-text" id="val-speed">50 m/s</span><div class="knob-ring"></div></div>
+        <div class="nav-item active *****" id="nav-dist" data-source="dist"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20"/><path d="M6 8v8"/><path d="M10 8v8"/><path d="M14 8v8"/><path d="M18 8v8"/></svg><span class="nav-text" id="val-dist">500 m</span><div class="*****-ring"></div></div>
+        <div class="nav-item *****" id="nav-time" data-source="time"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="nav-text" id="val-time">10.000 s</span><div class="*****-ring"></div></div>
+        <div class="nav-item *****" id="nav-speed" data-source="speed"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 14l4-4"/><path d="M3.34 16A10 10 0 1 1 20.66 16"/></svg><span class="nav-text" id="val-speed">50 m/s</span><div class="*****-ring"></div></div>
         <div class="nav-item" id="nav-startstop"><svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor" id="icon-play"><path d="M8 5v14l11-7z"/></svg><span class="nav-text" id="text-startstop">Start</span></div>
     </div>
     <div class="sub-bar">
@@ -417,12 +417,10 @@
     const landingSection = document.getElementById('landingSection');
     const modals = document.querySelectorAll('.glass-modal');
 
-    // Right Main Menu Toggle
     document.getElementById('mainMenuBtn').addEventListener('click', () => {
         topMenuHorizontal.classList.toggle('active');
     });
 
-    // Inner Pharma Menu Toggle
     document.getElementById('pharmaMenuBtnInside').addEventListener('click', () => {
         topMenuPharmaInside.classList.toggle('active');
     });
@@ -454,7 +452,7 @@
         if(topMenuPharmaInside) topMenuPharmaInside.classList.remove('active');
     };
 
-    // --- GLOBAL MATH SECURE ENGINE ---
+    // --- GLOBAL MATH SECURE ENGINE (WITH TRIG FIX) ---
     window._isDegMain = true;
     
     window._sin = (x, deg) => deg ? Math.sin(x * Math.PI / 180) : Math.sin(x);
@@ -491,8 +489,36 @@
 
     // --- MAIN CALCULATOR ---
     let calcVal = "0"; let isInv = false;
-    window.toggleDegRad = function() { window._isDegMain = !window._isDegMain; document.getElementById('lblDeg').classList.toggle('active-mode', window._isDegMain); document.getElementById('lblRad').classList.toggle('active-mode', !window._isDegMain); };
-    window.toggleInv = function() { isInv = !isInv; document.getElementById('btnInv').classList.toggle('active-mode', isInv); };
+    
+    window.toggleDegRad = function() { 
+        window._isDegMain = !window._isDegMain; 
+        document.getElementById('lblDeg').classList.toggle('active-mode', window._isDegMain); 
+        document.getElementById('lblRad').classList.toggle('active-mode', !window._isDegMain); 
+    };
+
+    window.toggleInv = function() { 
+        isInv = !isInv; 
+        document.getElementById('btnInv').classList.toggle('active-mode', isInv); 
+        
+        document.getElementById('btnSin').innerText = isInv ? 'sin⁻¹' : 'sin';
+        document.getElementById('btnSin').setAttribute('onclick', isInv ? "calcInput('asin(')" : "calcInput('sin(')");
+        
+        document.getElementById('btnCos').innerText = isInv ? 'cos⁻¹' : 'cos';
+        document.getElementById('btnCos').setAttribute('onclick', isInv ? "calcInput('acos(')" : "calcInput('cos(')");
+        
+        document.getElementById('btnTan').innerText = isInv ? 'tan⁻¹' : 'tan';
+        document.getElementById('btnTan').setAttribute('onclick', isInv ? "calcInput('atan(')" : "calcInput('tan(')");
+
+        document.getElementById('btnLog').innerText = isInv ? '10^x' : 'log';
+        document.getElementById('btnLog').setAttribute('onclick', isInv ? "calcInput('10^')" : "calcInput('log(')");
+
+        document.getElementById('btnLn').innerText = isInv ? 'e^x' : 'ln';
+        document.getElementById('btnLn').setAttribute('onclick', isInv ? "calcInput('e^')" : "calcInput('ln(')");
+
+        document.getElementById('btnSqrt').innerText = isInv ? 'x²' : '√';
+        document.getElementById('btnSqrt').setAttribute('onclick', isInv ? "calcInput('^2')" : "calcInput('√(')");
+    };
+
     window.calcBackspace = function() { calcVal = (calcVal.length > 1 && !calcVal.includes("Error") && !calcVal.includes("UZT") && !calcVal.includes("Undefined")) ? calcVal.slice(0, -1) : "0"; document.getElementById('calcScreen').value = calcVal; };
     window.calcInput = function(val) { if ((calcVal === "0" || calcVal.includes("Error") || calcVal.includes("UZT") || calcVal.includes("Undefined")) && !['.','÷','×','+','-','%'].includes(val)) calcVal = ""; calcVal += val; document.getElementById('calcScreen').value = calcVal; };
     window.calcClear = function() { calcVal = "0"; document.getElementById('calcScreen').value = calcVal; };
@@ -502,6 +528,7 @@
         document.getElementById('calcScreen').value = finalVal;
         calcVal = finalVal.toString();
     };
+
 
     // --- PHARMACOLOGY PARAMETERS ENGINE ---
     const pharmaFormulas = {
@@ -588,10 +615,10 @@
     function setActiveNav(index) { navItems.forEach((item, i) => { if(i === index) item.classList.add('active'); else item.classList.remove('active'); }); }
     function trackGlassAnimation() { const activeItem = document.querySelector('.nav-item.active'); if(activeItem && glass) { glass.style.left = activeItem.offsetLeft + 'px'; glass.style.width = activeItem.offsetWidth + 'px'; } requestAnimationFrame(trackGlassAnimation); } trackGlassAnimation();
     let isDragging = false, startY = 0, activeSource = null, activeKnobRing = null, currentRotation = 0;
-    function startDrag(e, source, item) { isDragging = true; startY = e.clientY || e.touches[0].clientY; activeSource = source; activeKnobRing = item.querySelector('.knob-ring'); document.body.style.cursor = 'ns-resize'; e.preventDefault(); }
+    function startDrag(e, source, item) { isDragging = true; startY = e.clientY || e.touches[0].clientY; activeSource = source; activeKnobRing = item.querySelector('.*****-ring'); document.body.style.cursor = 'ns-resize'; e.preventDefault(); }
     window.addEventListener('pointermove', (e) => { if(!isDragging) return; let clientY = e.clientY || (e.touches ? e.touches[0].clientY : startY); let deltaY = startY - clientY; startY = clientY; currentRotation += deltaY * 2; if(activeKnobRing) activeKnobRing.style.transform = `translateY(-50%) rotate(${currentRotation}deg)`; const sl = document.getElementById('sl-' + activeSource); const min = parseFloat(sl.min) || 0, max = parseFloat(sl.max) || 2000; let range = max - min; let step = range / 200; if(activeSource === 'time') step = range / 150; if(modeD === 'cosmic' && activeSource === 'dist') step = range / 100; let newVal = (parseFloat(sl.value) || 0) + (deltaY * step); newVal = Math.max(min, Math.min(max, newVal)); sl.value = newVal; updatePhysics(activeSource); updateNavBarText(); if(activeSource === 'dist' || activeSource === 'time') updateTargetDistance(); });
     window.addEventListener('pointerup', () => { isDragging = false; document.body.style.cursor = 'default'; });
-    navItems.forEach((item, i) => { item.addEventListener('pointerdown', (e) => { if (!item.classList.contains('active')) setActiveNav(i); if(item.classList.contains('knob')) startDrag(e, item.dataset.source, item); else if(item.id === 'nav-startstop') document.getElementById('ignite-btn').click(); }); });
+    navItems.forEach((item, i) => { item.addEventListener('pointerdown', (e) => { if (!item.classList.contains('active')) setActiveNav(i); if(item.classList.contains('*****')) startDrag(e, item.dataset.source, item); else if(item.id === 'nav-startstop') document.getElementById('ignite-btn').click(); }); });
     function updateNavBarText() { const d = parseFloat(document.getElementById('sl-dist').value) || 0, t = parseFloat(document.getElementById('sl-time').value) || 0, v = parseFloat(document.getElementById('sl-speed').value) || 0; const txtD = document.getElementById('val-dist'), txtT = document.getElementById('val-time'), txtS = document.getElementById('val-speed'); if(modeD === 'cosmic') txtD.innerText = d.toFixed(0) + " M"; else txtD.innerText = d.toFixed(0) + " m"; txtT.innerText = t.toFixed(3) + (isMilli ? " ms" : " s"); if (v >= C * 0.999) txtS.innerText = "LIGHT SPEED"; else { if(v > 1000000) txtS.innerText = (v/1000000).toFixed(1) + "M m/s"; else if (v > 1000) txtS.innerText = (v/1000).toFixed(1) + "k m/s"; else txtS.innerText = v.toFixed(0) + " m/s"; } }
     document.querySelectorAll('#pair-scale .dot-container').forEach(el => { el.addEventListener('pointerdown', () => { document.querySelectorAll('#pair-scale .dot-container').forEach(d => d.classList.remove('active')); el.classList.add('active'); if (el.dataset.val === 'local') document.getElementById('btn-d-local').click(); else document.getElementById('btn-d-cosmic').click(); }); });
     document.querySelectorAll('#pair-time .dot-container').forEach(el => { el.addEventListener('pointerdown', () => { document.querySelectorAll('#pair-time .dot-container').forEach(d => d.classList.remove('active')); el.classList.add('active'); if (el.dataset.val === 'norm') document.getElementById('btn-t-norm').click(); else document.getElementById('btn-t-milli').click(); }); });
